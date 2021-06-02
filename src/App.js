@@ -1,19 +1,18 @@
 import { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import Form from './components/Form/';
+// import PropTypes from 'prop-types';
+import ContactForm from './components/ContactForm';
 import Contacts from './components/Conatacts/';
 import 'modern-normalize/modern-normalize.css';
 
 class App extends Component {
   state = {
     contacts: [],
-    name: '',
   };
 
   render() {
     return (
       <Fragment>
-        <Form />
+        <ContactForm />
         <Contacts />
       </Fragment>
     );
