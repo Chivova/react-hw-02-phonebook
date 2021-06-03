@@ -2,32 +2,43 @@ import { Component, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import ContactForm from './components/ContactForm';
-import Contacts from './components/Conatacts/';
+import ContactList from './components/ContactList';
+import Filter from './components/Filter';
+
 import 'modern-normalize/modern-normalize.css';
 
 class App extends Component {
   state = {
     contacts: [],
+    filter: '',
   };
 
-  addContact = data => {
+  addContact = ({ name, number }) => {
     const contact = {
       id: uuidv4(),
-      name: data,
+      name,
+      number,
     };
 
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts],
     }));
-
-    console.log(this.state);
   };
 
+  handlerFilteredConacts(e) {
+    const { value } = e.currentTarget;
+
+    this.setState({ filter: value });
+  }
+
   render() {
+    const { contacts } = this.state;
+
     return (
       <Fragment>
         <ContactForm onSubmit={this.addContact} />
-        <Contacts />
+        <ContactList contacts={contacts} />
+        <Filter value={this.filter} onChange={this.handlerFilteredConacts} />
       </Fragment>
     );
   }
