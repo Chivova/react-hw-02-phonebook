@@ -1,10 +1,17 @@
+import PropTypes from 'prop-types';
+import s from './ContactList.module.css';
+
 const ContactList = ({ contacts, onClick }) => {
   return (
-    <ul>
+    <ul className={s.contactsList}>
       {contacts.map(({ id, name, number }) => (
-        <li key={id}>
+        <li className={s.contactsItem} key={id}>
           {name}: {number}
-          <button onClick={() => onClick(id)} type="button">
+          <button
+            className={s.contactsBtn}
+            onClick={() => onClick(id)}
+            type="button"
+          >
             X
           </button>
         </li>
@@ -13,4 +20,14 @@ const ContactList = ({ contacts, onClick }) => {
   );
 };
 
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired,
+  ),
+  onClick: PropTypes.func.isRequired,
+};
 export default ContactList;

@@ -1,13 +1,23 @@
-import { Component, Fragment } from 'react';
-// import PropTypes from 'prop-types';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
+
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
+import Container from './components/Container';
 
 import 'modern-normalize/modern-normalize.css';
 
 class App extends Component {
+  static propTypes = {
+    contacts: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }),
+    filter: PropTypes.string,
+  };
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -62,11 +72,11 @@ class App extends Component {
     const filteredContacts = this.getFilteredContacts();
 
     return (
-      <Fragment>
+      <Container>
         <ContactForm onSubmit={this.addContact} />
         <Filter value={filter} onChange={this.handlerFilterConacts} />
         <ContactList contacts={filteredContacts} onClick={this.deleteContact} />
-      </Fragment>
+      </Container>
     );
   }
 }
