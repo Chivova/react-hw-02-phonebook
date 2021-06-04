@@ -5,7 +5,7 @@ const Filter = ({ value, onChange }) => (
   <div className={s.filterWrapp}>
     <h2 className={s.filterTitle}>Contacts</h2>
     <label>
-      <p className={s.filterText}> Find Contacts By Name</p>
+      <p className={s.filterText}>Find Contacts By Name</p>
       <input
         className={s.filterInput}
         type="text"
